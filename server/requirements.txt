@@ -4,6 +4,6 @@ pydantic==1.10.7
 python-dotenv==1.0.0
 cloudinary==1.30.0
 sqlalchemy==2.0.12
-langchain-community==0.0.208
+langchain-community
 langchain-google-genai==0.0.5
 langchain-core==0.0.188
