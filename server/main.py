@@ -134,8 +134,7 @@ async def get_documents():
     documents = db.query(Document).all()
     db.close()
     return [{"id": doc.id, "url": doc.url, "file_name": doc.file_name, "upload_date": doc.upload_date} for doc in documents]
+@app.get("/")
+async def root():
+    return {"message": "PDF QA API is running"}
 
-# Run the application with: uvicorn filename:app --reload
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
