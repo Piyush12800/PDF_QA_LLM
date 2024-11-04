@@ -7,3 +7,4 @@ sqlalchemy
 langchain-community
 langchain-google-genai
 langchain-core
+psycopg2-binary
