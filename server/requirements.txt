@@ -10,3 +10,4 @@ langchain-core
 psycopg2-binary
 python-jose
 python-multipart
+pypdf
