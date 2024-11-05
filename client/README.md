@@ -1,12 +1,13 @@
 # PDF Q/A Client Application
 
 ## Overview
-Planet is a web-based client application that allows users to upload PDF documents and interact with an AI-powered question-answering system. Users can ask questions related to the content of the uploaded documents and receive answers in real-time.
+A web-based client application that allows users to upload PDF documents and interact with an AI-powered question-answering system. Users can ask questions related to the content of the uploaded documents and receive answers in real-time.
 
 ## Features
-* **PDF Upload**: Users can upload a single PDF document.
-* **Chat Interface**: Users can interact with an AI assistant to ask questions about the uploaded document.
-* **Markdown Support**: AI responses are rendered with Markdown formatting for better readability.
+* **PDF Upload**: Users can upload PDF documents
+* **Chat Interface**: Interactive AI assistant for document-related questions
+* **Markdown Support**: AI responses rendered with Markdown formatting
+* **Document Management**: View and manage uploaded documents
 
 ## Tech Stack
 * **Frontend**: React.js
@@ -16,73 +17,79 @@ Planet is a web-based client application that allows users to upload PDF documen
 * **Markdown Rendering**: React Markdown
 * **Icons**: React Icons
 
-## Getting Started
-
-### Prerequisites
+## Prerequisites
 * Node.js (v14 or later)
 * npm (v6 or later) or Yarn
 
-### Installation
+## Installation
 
-1. Clone the repository:
+1. Navigate to the client directory:
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+cd client
 ```
 
 2. Install dependencies:
 ```bash
 npm install
-```
-or
-```bash
+# or
 yarn install
 ```
 
 3. Set up environment variables:
-Create a `.env` file in the root directory and add your base API URL:
+Create a `.env` file:
 ```bash
-REACT_APP_BASE_URL=<your-api-url>
+REACT_APP_API_URL=http://localhost:8000
 ```
 
-### Running the Application
-To start the development server, run:
+## Development
+Start the development server:
 ```bash
 npm start
-```
-or
-```bash
+# or
 yarn start
 ```
 
-Open your browser and navigate to `http://localhost:3000` to view the application.
+Visit `http://localhost:3000` to view the application.
 
 ## Components
 
 ### Header
-* Displays the logo and upload button.
-* Allows users to upload a PDF document.
+* Application logo and upload button
+* PDF document upload functionality
 
 ### DropzoneModal
-* Provides a modal interface for dragging and dropping PDF files or clicking to select files.
-* Validates the file type and ensures only a single PDF file is uploaded.
+* Drag-and-drop PDF upload interface
+* File type validation and preview
 
 ### Chat
-* Displays the chat interface where users can send messages to the AI assistant.
-* Handles the question submission and response display.
+* Interactive chat interface for Q&A
+* Message history display
+* Question input and submission
 
 ### Message
-* Renders individual messages in the chat, differentiating between user and AI messages.
-* Supports Markdown formatting for AI responses.
+* Individual message display
+* Markdown formatting for AI responses
+* User/AI message differentiation
 
 ## API Integration
-The application communicates with the backend API for the following functionalities:
-* **Upload File**: `POST /upload` - Uploads the selected PDF file.
-* **Get Files**: `GET /documents` - Retrieves a list of uploaded documents.
-* **Ask Question**: `POST /ask` - Sends a question related to a specific document and receives an answer.
+
+The client communicates with the backend through the following endpoints:
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/upload` | POST | Upload PDF documents |
+| `/documents` | GET | Retrieve uploaded documents |
+| `/ask` | POST | Submit questions and get AI responses |
+
+## Scripts
+* `npm start`: Run development server
+* `npm build`: Build for production
+* `npm test`: Run tests
+* `npm eject`: Eject from Create React App
 
 ## Contributing
-Contributions are welcome! If you'd like to contribute to the project, please fork the repository and submit a pull request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
