@@ -47,7 +47,6 @@ const Header = ({ setDocumentId, documentId }) => {
                 {/* Logo Section */}
                 <div className="flex items-center">
                     <img src={logo} alt="Logo" className="h-8 mr-2" />
-                    <span className="text-xl font-semibold text-green-600">Planet</span>
                 </div>
 
                 {/* Upload Button with File Name Display */}
