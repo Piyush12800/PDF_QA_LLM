@@ -104,7 +104,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 ## Deployment
 
 - Frontend is deployed on [Vercel](https://vercel.com)
-- Backend is hosted on [Railway](https://railway.app)
+- Backend is hosted on [Render](https://render.com)
 
 ## Contributing
 
