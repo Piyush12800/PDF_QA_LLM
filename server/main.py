@@ -19,7 +19,7 @@ app = FastAPI()
 # CORS configuration to allow cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://pdf-qa-llm.vercel.app"],  # Add your frontend URL here
+    allow_origins=["*"],  # Add your frontend URL here
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
