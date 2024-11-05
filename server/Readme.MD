@@ -1,120 +1,119 @@
 
+# PDF Q/A Server Application
 
-# FastAPI PDF Question-Answering API
+## Overview
 
-This project is a FastAPI-based API that allows users to upload PDF documents and ask questions about their content. The API utilizes Google's AI model for natural language processing and employs Cloudinary for file storage. The documents' metadata is stored in a PostgreSQL database.
+A FastAPI-based backend service that processes PDF documents and provides AI-powered question-answering capabilities using Google's Gemini AI model. The service handles PDF storage using Cloudinary and maintains document metadata in PostgreSQL.
 
 ## Features
 
-- **Upload PDF Files**: Users can upload PDF documents, which are then stored in Cloudinary.
-- **Ask Questions**: Users can ask questions related to the uploaded PDF documents, and the API responds with answers based on the document content.
-- **Document Metadata Management**: The API stores metadata about the uploaded documents in a PostgreSQL database.
+* **PDF Processing**: Upload and store PDF documents
+* **AI Integration**: Google Gemini AI for document analysis
+* **Database Storage**: PostgreSQL for document metadata
+* **Cloud Storage**: Cloudinary for PDF file storage
+* **RESTful API**: Clean API interface for client interaction
 
-## Technology Stack
+## Tech Stack
 
-- **Backend**: FastAPI
-- **Database**: PostgreSQL
-- **File Storage**: Cloudinary
-- **AI Model**: Google Generative AI (Gemini)
-- **ORM**: SQLAlchemy
-- **Document Loading**: LangChain
+* **Backend Framework**: FastAPI
+* **Database**: PostgreSQL
+* **ORM**: SQLAlchemy
+* **AI Model**: Google Generative AI (Gemini)
+* **PDF Processing**: LangChain
+* **Cloud Storage**: Cloudinary
+* **CORS**: Built-in FastAPI CORS middleware
 
-## Requirements
+## Prerequisites
 
-Before running the application, ensure you have the following environment variables set up:
+* Python 3.8+
+* PostgreSQL
+* Cloudinary account
+* Google AI API access
 
-- `DATABASE_URL`: The connection string for your PostgreSQL database.
-- `GOOGLE_API_KEY`: Your API key for Google AI services.
-- `CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
-- `CLOUDINARY_API_KEY`: Your Cloudinary API key.
-- `CLOUDINARY_API_SECRET`: Your Cloudinary API secret.
+## Environment Variables
+
+Create a `.env` file with:
+
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+GOOGLE_API_KEY=your_google_api_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
 
 ## Installation
 
-1. Clone the repository:
+1. Navigate to the server directory:
 
 ```bash
-git clone https://github.com/yourusername/pdf-qa-api.git
-cd pdf-qa-api
+cd server
 ```
 
-2. Create a virtual environment and activate it:
+2. Create and activate virtual environment:
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install the required packages:
+3. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## Development
 
-1. Start the FastAPI server:
+Start the FastAPI server:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-The API will be accessible at `http://127.0.0.1:8000`.
-
-2. **Upload a PDF Document**
-
-Use the `/upload/` endpoint to upload a PDF file:
-
-```bash
-curl -X POST "http://127.0.0.1:8000/upload/" -F "file=@/path/to/your/document.pdf"
-```
-
-3. **Ask a Question**
-
-Use the `/ask/` endpoint to ask a question about the uploaded document:
-
-```bash
-curl -X POST "http://127.0.0.1:8000/ask/" \
-  -H "Content-Type: application/json" \
-  -d '{"document_id": 1, "question": "What is the main topic of the document?"}'
-```
-
-4. **Get Uploaded Documents**
-
-Retrieve a list of all uploaded documents:
-
-```bash
-curl -X GET "http://127.0.0.1:8000/documents/"
-```
+The API will be available at `http://localhost:8000`
 
 ## API Endpoints
 
-| Method | Endpoint        | Description                               |
-| ------ | --------------- | ----------------------------------------- |
-| POST   | `/upload/`    | Upload a PDF document                     |
-| POST   | `/ask/`       | Ask a question about an uploaded document |
-| GET    | `/documents/` | Retrieve a list of all uploaded documents |
-| GET    | `/`           | Verify that the API is running            |
+| Endpoint        | Method | Description     | Request Body                                 |
+| --------------- | ------ | --------------- | -------------------------------------------- |
+| `/upload/`    | POST   | Upload PDF file | PDF file (multipart/form-data)               |
+| `/ask/`       | POST   | Ask question    | `{"document_id": int, "question": string}` |
+| `/documents/` | GET    | List documents  | None                                         |
+| `/`           | GET    | Health check    | None                                         |
 
-## License
+## Database Schema
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Document Table
+
+```sql
+CREATE TABLE documents (
+    id SERIAL PRIMARY KEY,
+    url VARCHAR NOT NULL,
+    file_name VARCHAR NOT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## Error Handling
+
+* File upload validation
+* Document existence checks
+* AI model error handling
+* Database connection error handling
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-## Acknowledgements
+## Future Improvements
 
-* FastAPI for building the API
-* Cloudinary for file storage
-* SQLAlchemy for database interactions
-* LangChain for document loading and AI model integration
-
----
-
-### Notes for Deployment:
-
-- Make sure to replace `https://github.com/yourusername/pdf-qa-api.git` with your actual repository URL
-- Update the requirements.txt with all necessary dependencies
-- Ensure all environment variables are properly set in your deployment environment
+* Batch document upload
+* Document deletion
+* User authentication
+* Rate limiting
+* Response caching
